@@ -1,4 +1,4 @@
 #!/bin/sh
 
 cd `dirname $0`
-java -jar ironvas.jar $*
+java -jar ironvas_EventsToAMQP.jar $*

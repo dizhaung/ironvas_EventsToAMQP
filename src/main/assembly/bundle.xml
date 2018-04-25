@@ -15,7 +15,7 @@
 			<filtered>true</filtered>
 		</file>
 		<file>
-			<source>${project.build.directory}/ironvas-${version}-bin.jar</source>
+			<source>${project.build.directory}/ironvas_EventsToAMQP-${version}-bin.jar</source>
 			<outputDirectory></outputDirectory>
 			<destName>ironvas.jar</destName>
 		</file>
@@ -34,7 +34,7 @@
 			<directory>${project.build.directory}</directory>
 			<outputDirectory></outputDirectory>
 			<includes>
-				<include>ironvas-bin.jar</include>
+				<include>ironvas_EventsToAMQP-bin.jar</include>
 			</includes>
 		</fileSet>
 		<fileSet>

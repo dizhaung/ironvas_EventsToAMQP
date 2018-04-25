@@ -56,10 +56,12 @@ import com.rabbitmq.client.Consumer;
 import com.rabbitmq.client.DefaultConsumer;
 import com.rabbitmq.client.Envelope;
 
-import de.decoit.clearer.event.common.BoltEvent;
-import de.hshannover.f4.trust.clearer.event.ironvas.IronvasDeleteTaskEvent;
-import de.hshannover.f4.trust.clearer.event.ironvas.IronvasScanEvent;
-import de.hshannover.f4.trust.clearer.event.ironvas.IronvasTaskInformation;
+import de.hshannover.f4.trust.ironevents.interfaces.Event;
+import de.hshannover.f4.trust.ironevents.ironvas.implementations.IronvasDeleteTaskEventImpl;
+import de.hshannover.f4.trust.ironevents.ironvas.implementations.IronvasScanTaskEventImpl;
+import de.hshannover.f4.trust.ironevents.ironvas.implementations.IronvasTaskInformationImpl;
+import de.hshannover.f4.trust.ironevents.ironvas.interfaces.IronvasTaskEvent;
+import de.hshannover.f4.trust.ironevents.ironvas.interfaces.IronvasTaskInformation;
 import de.hshannover.f4.trust.ironvas.omp.Config;
 import de.hshannover.f4.trust.ironvas.omp.OmpConnection;
 import de.hshannover.f4.trust.ironvas.omp.Target;
@@ -169,22 +171,22 @@ public class AmqpSubscriber {
 						mAmqpChannel.basicAck(envelope.getDeliveryTag(), false);
 						return;
 					}
-					BoltEvent event = null;
+					IronvasTaskEvent event = null;
 
 					try {
-						event = mObjMapper.readValue(body, IronvasScanEvent.class);
+						event = mObjMapper.readValue(body, IronvasScanTaskEventImpl.class);
 					} catch (Exception e1) {
 						try {
-							event = mObjMapper.readValue(body, IronvasDeleteTaskEvent.class);
+							event = mObjMapper.readValue(body, IronvasDeleteTaskEventImpl.class);
 						} catch (Exception e2) {
 						}
 					}
 
-					if (event instanceof IronvasScanEvent) {
-						handleEvent((IronvasScanEvent) event);
-					} else if (event instanceof IronvasDeleteTaskEvent) {
+					if (event instanceof IronvasScanTaskEventImpl) {
+						handleEvent((IronvasScanTaskEventImpl) event);
+					} else if (event instanceof IronvasDeleteTaskEventImpl) {
 						if (Configuration.amqpSubscribeAllowDeleteEvent()) {
-							handleEvent((IronvasDeleteTaskEvent) event);
+							handleEvent((IronvasDeleteTaskEventImpl) event);
 						}
 					} else {
 						LOGGER.info("Received unknown Event. Delivery Tag:"
@@ -194,7 +196,7 @@ public class AmqpSubscriber {
 				} catch (Exception e) {
 					e.printStackTrace();
 					LOGGER.info("Received message is no "
-							+ IronvasScanEvent.class.getName() + " Event");
+							+ IronvasScanTaskEventImpl.class.getName() + " Event");
 				} finally {
 					mAmqpChannel.basicAck(envelope.getDeliveryTag(), false);
 				}
@@ -210,11 +212,11 @@ public class AmqpSubscriber {
 	 * 
 	 * @param event the given IronvasDeleteTaskEvent event.
 	 */
-	private void handleEvent(IronvasDeleteTaskEvent event) {
+	private void handleEvent(IronvasDeleteTaskEventImpl event) {
 		if (event == null
 				|| event.getTaskInfos() == null || event.getTaskInfos().isEmpty()) {
 			LOGGER.info("Got unexpected "
-					+ IronvasDeleteTaskEvent.class.getName() + " event. Is null or emtpy.");
+					+ IronvasDeleteTaskEventImpl.class.getName() + " event. Is null or emtpy.");
 			return;
 		}
 
@@ -248,8 +250,8 @@ public class AmqpSubscriber {
 	 * 
 	 * @param event
 	 */
-	private void handleEvent(IronvasScanEvent event) {
-		IronvasTaskInformation info = event.getInfo();
+	private void handleEvent(IronvasScanTaskEventImpl event) {
+		IronvasTaskInformationImpl info = event.getInfo();
 		LOGGER.info("Got an event to scan: "
 				+ info.getIP());
 		String ip = info.getIP();

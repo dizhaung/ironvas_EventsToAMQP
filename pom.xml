@@ -8,18 +8,18 @@
 
 	<!-- general project information -->
 	<groupId>de.hshannover.f4.trust</groupId>
-	<artifactId>ironvas</artifactId>
-	<version>0.2.0</version>
+	<artifactId>ironvas_EventsToAMQP</artifactId>
+	<version>0.0.1</version>
 	<packaging>jar</packaging>
-	<inceptionYear>2011</inceptionYear>
-	<name>ironvas</name>
+	<inceptionYear>2018</inceptionYear>
+	<name>ironvas_EventsToAMQP</name>
 	<url>http://trust.f4.hs-hannover.de</url>
 	<description>
-		ironvas is a *highly experimental* integration of Open Vulnerability
+		ironvas EventsToAMQP is a *highly experimental* integration of Open Vulnerability
 		Assessment System (OpenVAS) into a MAP-Infrastructure. The integration
 		aims to share security related informations (vulnerabilities
 		detected by OpenVAS) with other network components in the TNC architecture
-		via IF-MAP.
+		via IF-MAP or other architectures via AMQP.
 	</description>
 	<organization>
 		<name>Trust@HsH</name>
@@ -208,9 +208,9 @@
 			<version>2.10.3</version>
 		</dependency>
 		<dependency>
-            <groupId>de.decoit.clearer</groupId>
-            <artifactId>event-pojos</artifactId>
-            <version>0.30-SNAPSHOT</version>
+            <groupId>de.hshannover.f4.trust</groupId>
+            <artifactId>ironevents</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
         </dependency>
 		<dependency>
     		<groupId>com.rabbitmq</groupId>

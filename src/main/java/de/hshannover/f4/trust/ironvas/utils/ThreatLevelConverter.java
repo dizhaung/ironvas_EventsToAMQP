@@ -42,22 +42,22 @@ import de.hshannover.f4.trust.ironvas.ThreatLevel;
 
 public class ThreatLevelConverter {
 
-	public static de.hshannover.f4.trust.clearer.event.common.ThreatLevel
+	public static de.hshannover.f4.trust.ironevents.ironvas.common.ThreatLevel
 			convertThreatLevelToClearer(ThreatLevel threatLevel) {
 		// Unknown, None, Low, Medium, High, Critical
 		switch (threatLevel) {
 			case Debug:
-				return de.hshannover.f4.trust.clearer.event.common.ThreatLevel.Debug;
+				return de.hshannover.f4.trust.ironevents.ironvas.common.ThreatLevel.Debug;
 			case High:
-				return de.hshannover.f4.trust.clearer.event.common.ThreatLevel.High;
+				return de.hshannover.f4.trust.ironevents.ironvas.common.ThreatLevel.High;
 			case Log:
-				return de.hshannover.f4.trust.clearer.event.common.ThreatLevel.Log;
+				return de.hshannover.f4.trust.ironevents.ironvas.common.ThreatLevel.Log;
 			case Low:
-				return de.hshannover.f4.trust.clearer.event.common.ThreatLevel.Low;
+				return de.hshannover.f4.trust.ironevents.ironvas.common.ThreatLevel.Low;
 			case Medium:
-				return de.hshannover.f4.trust.clearer.event.common.ThreatLevel.Medium;
+				return de.hshannover.f4.trust.ironevents.ironvas.common.ThreatLevel.Medium;
 			case Unknown:
-				return de.hshannover.f4.trust.clearer.event.common.ThreatLevel.Unknown;
+				return de.hshannover.f4.trust.ironevents.ironvas.common.ThreatLevel.Unknown;
 			default:
 				return null;
 		}

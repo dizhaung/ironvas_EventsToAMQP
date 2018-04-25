@@ -50,22 +50,22 @@ import de.hshannover.f4.trust.ironvas.RiskfactorLevel;
 
 public class RiskfactorLevelConverter {
 
-	public static de.hshannover.f4.trust.clearer.event.common.RiskfactorLevel
+	public static de.hshannover.f4.trust.ironevents.ironvas.common.RiskfactorLevel
 			convertRiskfactorLevelToClearer(RiskfactorLevel riskfactorLevel) {
 		// Unknown, None, Low, Medium, High, Critical
 		switch (riskfactorLevel) {
 			case Unknown:
-				return de.hshannover.f4.trust.clearer.event.common.RiskfactorLevel.Unknown;
+				return de.hshannover.f4.trust.ironevents.ironvas.common.RiskfactorLevel.Unknown;
 			case None:
-				return de.hshannover.f4.trust.clearer.event.common.RiskfactorLevel.None;
+				return de.hshannover.f4.trust.ironevents.ironvas.common.RiskfactorLevel.None;
 			case Low:
-				return de.hshannover.f4.trust.clearer.event.common.RiskfactorLevel.Low;
+				return de.hshannover.f4.trust.ironevents.ironvas.common.RiskfactorLevel.Low;
 			case Medium:
-				return de.hshannover.f4.trust.clearer.event.common.RiskfactorLevel.Medium;
+				return de.hshannover.f4.trust.ironevents.ironvas.common.RiskfactorLevel.Medium;
 			case High:
-				return de.hshannover.f4.trust.clearer.event.common.RiskfactorLevel.High;
+				return de.hshannover.f4.trust.ironevents.ironvas.common.RiskfactorLevel.High;
 			case Critical:
-				return de.hshannover.f4.trust.clearer.event.common.RiskfactorLevel.Critical;
+				return de.hshannover.f4.trust.ironevents.ironvas.common.RiskfactorLevel.Critical;
 			default:
 				return null;
 		}

@@ -51,7 +51,8 @@ import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.AMQP.BasicProperties;
 
-import de.hshannover.f4.trust.clearer.event.ironvas.IronvasEvent;
+import de.hshannover.f4.trust.ironevents.ironvas.implementations.IronvasEventImpl;
+import de.hshannover.f4.trust.ironevents.ironvas.interfaces.IronvasEvent;
 import de.hshannover.f4.trust.ironvas.utils.RiskfactorLevelConverter;
 import de.hshannover.f4.trust.ironvas.utils.ThreatLevelConverter;
 
@@ -145,7 +146,7 @@ public class AmqpPublisher implements Runnable {
 			
 			for (Vulnerability vul : news) {				
 
-				IronvasEvent event = new IronvasEvent(vul.getId(),
+				IronvasEvent event = new IronvasEventImpl(vul.getId(),
 						vul.getTimestamp().getTime(),
 						vul.getSubnet(),
 						vul.getHost(),
@@ -167,7 +168,7 @@ public class AmqpPublisher implements Runnable {
 
 			for (Vulnerability vul : outDated) {
 
-				IronvasEvent event = new IronvasEvent(vul.getId(),
+				IronvasEvent event = new IronvasEventImpl(vul.getId(),
 						vul.getTimestamp().getTime(),
 						vul.getSubnet(),
 						vul.getHost(),
